@@ -1,12 +1,14 @@
 ﻿@page "/"
 @using BlazorApp.Data
+@inject NavigationManager nv
 
 <h1>@Title</h1>
 
-Welcome to your new app.
-
+===================Test
 <Test Title="我是标题" Value="999" OnClick="Show"></Test>
-
+===================
+<br />
+===================Test1.1
 <Test1 Items="people">
     <HeaderTempate>
         <th>Id</th>
@@ -17,7 +19,7 @@ Welcome to your new app.
         <td>@context.Name</td>
     </RowTemplate>
 </Test1>
-
+===================Test1.2
 <Test1 Items="students">
     <HeaderTempate>
         <th>Id</th>
@@ -28,9 +30,11 @@ Welcome to your new app.
         <td>@context.Age</td>
     </RowTemplate>
 </Test1>
+===================
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
+===================事件
 <label>Function使用</label>
 <input @onchange="onchange" />
 
@@ -40,6 +44,18 @@ Welcome to your new app.
                     {
                         Title = e.Value.ToString() + "(from lamda)";
                     })" />
+===================
+<br />
+<br />
+===================路由
+<button @onclick="@(()=>
+                    {
+                        nv.NavigateTo("abc");
+                    })">
+    Navigate to not found.
+</button>
+<button @onclick="NavTo">Navigate to Test.</button>
+===================
 
 @code{
     public void Show()
@@ -67,5 +83,10 @@ Welcome to your new app.
     public void onchange(ChangeEventArgs e)
     {
         Title = e.Value.ToString() + "(from function)";
+    }
+
+    public void NavTo()
+    {
+        nv.NavigateTo("Test/999");
     }
 }

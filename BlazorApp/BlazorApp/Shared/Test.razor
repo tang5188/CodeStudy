@@ -1,4 +1,11 @@
-﻿<h3>@Title</h3>
+﻿@page "/Test/{memo:int}"
+@page "/Test"
+
+<h3>@Title</h3>
+<br />
+<br />
+<h4>路由参数：</h4>
+<h4>@Memo</h4>
 
 <input @attributes="InputAttributes" />
 
@@ -12,6 +19,12 @@
 
     [Parameter]
     public string Value { get; set; }
+
+    /// <summary>
+    /// 路由参数
+    /// </summary>
+    [Parameter]
+    public string Memo { get; set; }
 
     public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>() {
         { "title", "input1" },
