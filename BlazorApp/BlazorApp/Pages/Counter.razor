@@ -6,15 +6,39 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<br />
+<br />
+
+@*双向绑定*@
+<input @bind="Name" />
+<button @onclick="Update">Update</button>
+
+<br />
+<br />
+
+@*组件绑定*@
+<Test3 @bind-Title="Name"></Test3>
+
+<br />
+<br />
+
+<input type="datetime" @bind="Time" @bind:format="yyyy-MM-dd hh:mm:ss" />
+
 @code {
 
     private int currentCount = 0;
-
     private string style = "italic";
-
     private void IncrementCount()
     {
         currentCount++;
         style = style == "italic" ? "normal" : "italic";
     }
+
+    public string Name { get; set; } = "Tang";
+    public void Update()
+    {
+        Name = "Test1";
+    }
+
+    public DateTime Time { get; set; } = DateTime.Now;
 }

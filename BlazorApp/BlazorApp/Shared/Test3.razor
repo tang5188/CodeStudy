@@ -1,0 +1,9 @@
+﻿<input @bind="Title" />
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public EventCallback<string> TitleChanged { get; set; }
+}
