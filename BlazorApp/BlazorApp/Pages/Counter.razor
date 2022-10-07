@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@using BlazorApp.Data
 
 <h1 style="font-style:@style">Counter</h1>
 
@@ -24,6 +25,22 @@
 
 <input type="datetime" @bind="Time" @bind:format="yyyy-MM-dd hh:mm:ss" />
 
+<br />
+===================数据验证
+<EditForm Model="@child">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText @bind-Value="@child.Code" />
+    <ValidationMessage For="()=>child.Code" />
+
+    <InputText @bind-Value="@child.Name" />
+    <ValidationMessage For="()=>child.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+===================
+
 @code {
 
     private int currentCount = 0;
@@ -41,4 +58,9 @@
     }
 
     public DateTime Time { get; set; } = DateTime.Now;
+
+    public Child child = new Child();
+
+    //嵌套了child，如何校验？（预览版存在）
+    public Father father = new Father();
 }

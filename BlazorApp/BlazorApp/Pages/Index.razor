@@ -6,7 +6,6 @@
 
 ===================Test
 <Test Title="我是标题" Value="999" OnClick="Show"></Test>
-===================
 <br />
 ===================Test1.1
 <Test1 Items="people">
@@ -35,19 +34,18 @@
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 ===================事件
+<br />
 <label>Function使用</label>
 <input @onchange="onchange" />
-
-<br />
+&nbsp;&nbsp;&nbsp;&nbsp;
 <label>Lamda使用</label>
 <input @onchange="@((e)=>
                     {
                         Title = e.Value.ToString() + "(from lamda)";
                     })" />
-===================
-<br />
 <br />
 ===================路由
+<br />
 <button @onclick="@(()=>
                     {
                         nv.NavigateTo("abc");
@@ -55,7 +53,6 @@
     Navigate to not found.
 </button>
 <button @onclick="NavTo">Navigate to Test.</button>
-===================
 
 @code{
     public void Show()
