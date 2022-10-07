@@ -1,0 +1,35 @@
+﻿@typeparam IData
+
+<table>
+    <thead>
+        @HeaderTempate
+    </thead>
+
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>@RowTemplate(item)</tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    /// <summary>
+    /// 行标题由外部定义
+    /// </summary>
+    [Parameter]
+    public RenderFragment HeaderTempate { get; set; }
+
+    /// <summary>
+    /// 行内容、格式由外部定义
+    /// </summary>
+    [Parameter]
+    public RenderFragment<IData> RowTemplate { get; set; }
+
+    /// <summary>
+    /// 数据源
+    /// </summary>
+    [Parameter]
+    public IReadOnlyList<IData> Items { get; set; }
+}

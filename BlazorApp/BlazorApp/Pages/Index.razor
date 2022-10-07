@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using BlazorApp.Data
 
 <h1>Hello, world!</h1>
 
@@ -6,11 +7,48 @@ Welcome to your new app.
 
 <Test Title="我是标题" Value="999" OnClick="Show"></Test>
 
+<Test1 Items="people">
+    <HeaderTempate>
+        <th>Id</th>
+        <th>Name</th>
+    </HeaderTempate>
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Name</td>
+    </RowTemplate>
+</Test1>
+
+<Test1 Items="students">
+    <HeaderTempate>
+        <th>Id</th>
+        <th>Age</th>
+    </HeaderTempate>
+    <RowTemplate>
+        <td>@context.Id</td>
+        <td>@context.Age</td>
+    </RowTemplate>
+</Test1>
+
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
     public void Show()
     {
 
+    }
+
+    public List<Person> people;
+    public List<Student> students;
+
+    protected override Task OnInitializedAsync()
+    {
+        people = new List<Person>();
+        students = new List<Student>();
+        for (int i = 0; i < 5; i++)
+        {
+            people.Add(new Person() { Id = i.ToString(), Name = "test" + i });
+            students.Add(new Student() { Id = i.ToString(), Age = i });
+        }
+        return base.OnInitializedAsync();
     }
 }
