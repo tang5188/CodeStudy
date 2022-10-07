@@ -1,0 +1,23 @@
+﻿<h3>@Title</h3>
+
+<input @attributes="InputAttributes" />
+
+<input title="@Title" value="@Value" />
+
+<button @onclick="OnClick" style="width:100px; height:100px;" />
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>() {
+        { "title", "input1" },
+        { "value", "10" }
+    };
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+}
