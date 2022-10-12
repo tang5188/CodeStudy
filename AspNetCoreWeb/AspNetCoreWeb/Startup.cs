@@ -32,7 +32,10 @@ namespace AspNetCoreWeb
             //如果是开发者模式，则启用异常中间件
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                DeveloperExceptionPageOptions pageOptions = new DeveloperExceptionPageOptions();
+                pageOptions.SourceCodeLineCount = 5;
+                //配置异常中间件
+                app.UseDeveloperExceptionPage(pageOptions);
             }
 
             DefaultFilesOptions options = new DefaultFilesOptions();
