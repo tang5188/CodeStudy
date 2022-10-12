@@ -20,7 +20,9 @@ namespace AspNetCoreWeb
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                        //wwwroot是默认的，可以在此配置修改
+                        .UseWebRoot("wwwroot");
                 });
     }
 }

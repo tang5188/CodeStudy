@@ -35,6 +35,21 @@ namespace AspNetCoreWeb
                 app.UseDeveloperExceptionPage();
             }
 
+            DefaultFilesOptions options = new DefaultFilesOptions();
+            options.DefaultFileNames.Clear();
+            options.DefaultFileNames.Add("default.html");
+            //定义默认页面
+            app.UseDefaultFiles(options);
+            //可以访问静态文件
+            app.UseStaticFiles();
+
+            /* 相当于上面的UseDefaultFiles、UseStaticFiles
+            * FileServerOptions fileServerOptions = new FileServerOptions();
+            * fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            * fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("default.html");
+            * app.UseFileServer();
+            */
+
             //路由中间件
             app.UseRouting();
 
