@@ -38,13 +38,31 @@ namespace AspNetCoreWeb
             //路由中间件
             app.UseRouting();
 
-            //终结点中间件
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync($"Hello {configuration["MyName"]}!");
-                });
+                await context.Response.WriteAsync("MiddleWare(1)-In\r\n");
+                await next();
+                await context.Response.WriteAsync("MiddleWare(1)-Out\r\n");
+            });
+            app.Use(async (context, next) =>
+            {
+                await context.Response.WriteAsync("MiddleWare(2)-In\r\n");
+                await next();
+                await context.Response.WriteAsync("MiddleWare(2)-Out\r\n");
+            });
+
+            ////终结点中间件
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        await context.Response.WriteAsync($"Hello {configuration["MyName"]}!\r\n");
+            //    });
+            //});
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Run MiddleWare(3)-In\r\n");
             });
         }
     }
